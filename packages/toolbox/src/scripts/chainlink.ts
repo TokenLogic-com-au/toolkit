@@ -41,14 +41,6 @@ const chainToJson = {
   const formattedFeeds = Object.keys(chainToJson).reduce(
     (acc, key, ix) => {
       acc[key as unknown as number] = formatChainlinkFeeds(feeds[ix]);
-      const seen = new Set<string>();
-      for (const { name } of acc[key as unknown as number]) {
-        if (seen.has(name))
-          console.warn(
-            `Duplicate Chainlink feed name on chain ${key}: ${name}`,
-          );
-        seen.add(name);
-      }
       return acc;
     },
     {} as Record<number, FormattedChainlinkFeed[]>,

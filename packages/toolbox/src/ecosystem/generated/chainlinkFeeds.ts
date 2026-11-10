@@ -516,7 +516,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0x45D48aa93275c2274E1006BfdCb6406eF96a509B",
       "proxyAddress": "0xD13cB763C43B5C058E7Ec40176962c5030F4EB49",
       "decimals": 8,
-      "name": "WTGXX NAV"
+      "name": "WTGXX NAV (wtgxx-nav-24h)"
     },
     {
       "contractAddress": "0x47f0840aCB50DF9C3B9584017eF1A9560E777b88",
@@ -1204,7 +1204,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0xAA6319cA9816E3fe5E91719c1B1ef9aC7eb6f7cF",
       "proxyAddress": "0xD467dc4668DD8FdD762c7D18A198E85f380D0ED7",
       "decimals": 8,
-      "name": "ARS / USD"
+      "name": "ARS / USD (ars-usd-data-engine)"
     },
     {
       "contractAddress": "0xAa7F4b5DC26A5c5B8A36F3f4a2862a2E1FBfD71d",
@@ -7081,12 +7081,6 @@ export const chainlinkFeeds = {
       "name": "SPY / USD"
     },
     {
-      "contractAddress": "0x14D2F8E5f626803955E3C6D5Ea2B7DD86355BD29",
-      "proxyAddress": "0x496DC5AAbf2f118D78816B7358e69dC784D3De65",
-      "decimals": 18,
-      "name": "AoABT Reserves"
-    },
-    {
       "contractAddress": "0x16F8497fA9092615881746819C0CBa8E4A70e595",
       "proxyAddress": "0x7597Fdc0DaFc5FC743DFBc304cD57b15e8ea955c",
       "decimals": 8,
@@ -8537,12 +8531,6 @@ export const chainlinkFeeds = {
       "name": "0G / USD"
     },
     {
-      "contractAddress": "0xD3b165BedAbF094D79f61184cCd9361878035492",
-      "proxyAddress": "0xC1D05bAd3Acd3D11329c9A6e417A613d32aC4a78",
-      "decimals": 18,
-      "name": "AoABTb NAV"
-    },
-    {
       "contractAddress": "0xD827123D014578C965F6c9d87A641ec05FaA5501",
       "proxyAddress": "0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612",
       "decimals": 8,
@@ -8826,12 +8814,6 @@ export const chainlinkFeeds = {
       "name": "SYRUPUSDG / USDG Exchange Rate"
     },
     {
-      "contractAddress": "0xcF2226fE6C672E7355866fA00E9e329600b56526",
-      "proxyAddress": "0x36194c6DBB4218036d5f1ef070e9900896f84e06",
-      "decimals": 18,
-      "name": "AoABT NAV"
-    },
-    {
       "contractAddress": "0xcdD58f33ce4Aa8f15CE3cC95ac382Cc2b00eFe8C",
       "proxyAddress": "0x5082d93991DfCc69F57a27CEC63EDEe1B8C22757",
       "decimals": 8,
@@ -9006,7 +8988,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0x20f1DB1bAAcD913391dbc29734B41ec52F19E7d3",
       "proxyAddress": "0x8e1f834ca4B8Efd81D9c557426C70ed5F67e87B1",
       "decimals": 8,
-      "name": "KES / USD"
+      "name": "KES / USD (kes-usd-fx)"
     },
     {
       "contractAddress": "0x2E5eddE44187c3099529eF63Ced87994F078FbdB",
@@ -9108,7 +9090,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0xB48C3894bb71B2f1653DE76ad1Da92ed2F05B88f",
       "proxyAddress": "0xc17cBE2dB40e53F4984C46F608DA6DA1fF074c11",
       "decimals": 8,
-      "name": "NGN / USD"
+      "name": "NGN / USD (ngn-usd-fx)"
     },
     {
       "contractAddress": "0xC5A36f95B3Fc9aF02D095304914F56d2c22375ee",
@@ -9156,7 +9138,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0xa4da1C19490f6fF6E11c50eB5283F433Fe40E32C",
       "proxyAddress": "0xf323563241BF8B77a2979e9edC1181788A98EcB2",
       "decimals": 8,
-      "name": "JPY / USD"
+      "name": "JPY / USD (jpy-usd-fx)"
     },
     {
       "contractAddress": "0xa82b382154BF1e2819B8156326016537cdff9be6",
@@ -9174,7 +9156,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0xaf984A0A7e7072A5E03024896DcA9cB129A8470F",
       "proxyAddress": "0x0826492a24b1dBd1d8fcB4701b38C557CE685e9D",
       "decimals": 18,
-      "name": "KES / USD"
+      "name": "KES / USD (kes-usd-2)"
     },
     {
       "contractAddress": "0xdc49b43341eeFC4a09813484C0427a86a1Dd0CD6",
@@ -9554,7 +9536,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0x972a0b6e643193826D173537f00c3b36D3B4eC16",
       "proxyAddress": "0x70F88d3083FC1CA357f1efAF89F2F53281e09f5b",
       "decimals": 18,
-      "name": "XCU / USD"
+      "name": "XCU / USD (xcu-usd-new)"
     },
     {
       "contractAddress": "0x9FC8683EFf42913f0F1F32EEc2f21340017FCDdB",

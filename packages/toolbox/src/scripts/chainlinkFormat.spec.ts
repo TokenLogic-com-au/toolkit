@@ -100,4 +100,42 @@ describe("scripts:chainlinkFormat", () => {
       formatChainlinkFeeds([feed({ contractAddress: zeroAddress })]),
     ).toEqual([]);
   });
+
+  it("should keep the plain name for the feed whose path matches and suffix the others", () => {
+    expect(
+      formatChainlinkFeeds([
+        feed({ path: "ngn-usd-fx", name: "NGN / USD" }),
+        feed({ path: "ngn-usd", name: "NGN / USD" }),
+        feed({ path: "ngn-usd-2", name: "NGN / USD" }),
+      ]).map((f) => f.name),
+    ).toEqual(["NGN / USD (ngn-usd-fx)", "NGN / USD", "NGN / USD (ngn-usd-2)"]);
+  });
+
+  it("should keep the plain name of a unique feed even if its path doesn't match", () => {
+    expect(
+      formatChainlinkFeeds([feed({ path: "kes-usd-2", name: "KES / USD" })])[0]
+        .name,
+    ).toEqual("KES / USD");
+  });
+
+  it("should not count skipped feeds as duplicates", () => {
+    expect(
+      formatChainlinkFeeds([
+        feed({ path: "eth-usd-2" }),
+        feed({ path: "eth-usd-cre-backup" }),
+        feed({ path: "eth-usd-3", contractAddress: zeroAddress }),
+      ]).map((f) => f.name),
+    ).toEqual(["ETH / USD"]);
+  });
+
+  it("should throw if no path matches a duplicate name", () => {
+    expect(() =>
+      formatChainlinkFeeds([
+        feed({ path: "eth-usd-shared-svr", svrDisplayLabel: "Shared SVR" }),
+        feed({ path: "eth-usd-shared-svr-2", svrDisplayLabel: "Shared SVR" }),
+      ]),
+    ).toThrowErrorMatchingInlineSnapshot(
+      `[Error: No path matches duplicate Chainlink feed name "SVR ETH / USD": eth-usd-shared-svr, eth-usd-shared-svr-2]`,
+    );
+  });
 });

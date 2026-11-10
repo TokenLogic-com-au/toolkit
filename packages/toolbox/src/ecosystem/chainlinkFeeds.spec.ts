@@ -97,36 +97,42 @@ describe("ecosystem:chainlinkFeeds", () => {
     },
   );
 
-  it("should only have known duplicate names per chain", () => {
-    // consumers key feeds by name, so a new duplicate silently overwrites a feed
-    const duplicates = Object.fromEntries(
-      Object.entries(chainlinkFeeds)
-        .map(([chainId, feeds]) => {
-          const names = feeds.map((feed) => feed.name);
-          return [
-            chainId,
-            [...new Set(names.filter((n, i) => names.indexOf(n) !== i))],
-          ] as const;
-        })
-        .filter(([, names]) => names.length > 0),
-    );
-    expect(duplicates).toMatchInlineSnapshot(`
-      {
-        "1": [
-          "ARS / USD",
-          "WTGXX NAV",
-        ],
-        "42220": [
-          "KES / USD",
-          "JPY / USD",
-          "NGN / USD",
-        ],
-        "43114": [
-          "XCU / USD",
-        ],
-      }
-    `);
-  });
+  it.each(Object.entries(chainlinkFeeds))(
+    "should have unique names on chain %s",
+    (_, feeds) => {
+      // consumers key feeds by name, so a duplicate silently overwrites a feed
+      const names = feeds.map((feed) => feed.name);
+      expect(names.filter((n, i) => names.indexOf(n) !== i)).toEqual([]);
+    },
+  );
+
+  it.each([
+    {
+      chainId: ChainId.avalanche,
+      address: "0x32543Ad9dDAC8f883eE4d3c0a21a24E095A9E1B0",
+      name: "XCU / USD",
+    },
+    {
+      chainId: ChainId.avalanche,
+      address: "0x70F88d3083FC1CA357f1efAF89F2F53281e09f5b",
+      name: "XCU / USD (xcu-usd-new)",
+    },
+    {
+      chainId: ChainId.celo,
+      address: "0x235e5c8697177931459fA7D19fba7256d29F17DA",
+      name: "NGN / USD",
+    },
+    {
+      chainId: ChainId.celo,
+      address: "0xc17cBE2dB40e53F4984C46F608DA6DA1fF074c11",
+      name: "NGN / USD (ngn-usd-fx)",
+    },
+  ] as const)(
+    "should suffix duplicate names with the path, keeping $name",
+    ({ chainId, address, name }) => {
+      expect(getChainlinkFeed({ chainId, address })?.name).toEqual(name);
+    },
+  );
 
   it("should be case insensitive", () => {
     const feed = getChainlinkFeed({
