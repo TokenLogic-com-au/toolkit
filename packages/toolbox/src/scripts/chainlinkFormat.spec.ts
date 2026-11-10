@@ -111,6 +111,41 @@ describe("scripts:chainlinkFormat", () => {
     ).toEqual(["NGN / USD (ngn-usd-fx)", "NGN / USD", "NGN / USD (ngn-usd-2)"]);
   });
 
+  it("should keep the plain name for the only visible feed over hidden path matches", () => {
+    expect(
+      formatChainlinkFeeds([
+        feed({ path: "kes-usd-fx", name: "KES / USD", docs: { hidden: true } }),
+        feed({ path: "kes-usd", name: "KES / USD", docs: { hidden: true } }),
+        feed({ path: "kes-usd-2", name: "KES / USD", docs: { hidden: null } }),
+      ]).map((f) => f.name),
+    ).toEqual(["KES / USD (kes-usd-fx)", "KES / USD (kes-usd)", "KES / USD"]);
+  });
+
+  it("should fall back to the path match when all duplicates are hidden", () => {
+    expect(
+      formatChainlinkFeeds([
+        feed({
+          path: "wtgxx-nav-24h",
+          name: "WTGXX NAV",
+          docs: { hidden: true },
+        }),
+        feed({ path: "wtgxx-nav", name: "WTGXX NAV", docs: { hidden: true } }),
+      ]).map((f) => f.name),
+    ).toEqual(["WTGXX NAV (wtgxx-nav-24h)", "WTGXX NAV"]);
+  });
+
+  it("should only match paths among visible feeds when several are visible", () => {
+    expect(() =>
+      formatChainlinkFeeds([
+        feed({ path: "eth-usd", docs: { hidden: true } }),
+        feed({ path: "eth-usd-2" }),
+        feed({ path: "eth-usd-3" }),
+      ]),
+    ).toThrowErrorMatchingInlineSnapshot(
+      `[Error: No path matches duplicate Chainlink feed name "ETH / USD": eth-usd-2, eth-usd-3]`,
+    );
+  });
+
   it("should keep the plain name of a unique feed even if its path doesn't match", () => {
     expect(
       formatChainlinkFeeds([feed({ path: "kes-usd-2", name: "KES / USD" })])[0]

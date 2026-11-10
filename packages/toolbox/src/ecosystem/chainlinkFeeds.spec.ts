@@ -127,6 +127,32 @@ describe("ecosystem:chainlinkFeeds", () => {
       address: "0xc17cBE2dB40e53F4984C46F608DA6DA1fF074c11",
       name: "NGN / USD (ngn-usd-fx)",
     },
+    // shipped constants point to the visible feeds, not the hidden path matches
+    {
+      chainId: ChainId.celo,
+      address: "0xf323563241BF8B77a2979e9edC1181788A98EcB2",
+      name: "JPY / USD",
+    },
+    {
+      chainId: ChainId.celo,
+      address: "0x6312034F70390d09bb03F789F84f00215a444AEa",
+      name: "JPY / USD (jpy-usd)",
+    },
+    {
+      chainId: ChainId.celo,
+      address: "0x0826492a24b1dBd1d8fcB4701b38C557CE685e9D",
+      name: "KES / USD",
+    },
+    {
+      chainId: ChainId.celo,
+      address: "0x116Ac3EA0C18D101581E927A449851Ab720a39C1",
+      name: "KES / USD (kes-usd)",
+    },
+    {
+      chainId: ChainId.celo,
+      address: "0x8e1f834ca4B8Efd81D9c557426C70ed5F67e87B1",
+      name: "KES / USD (kes-usd-fx)",
+    },
   ] as const)(
     "should suffix duplicate names with the path, keeping $name",
     ({ chainId, address, name }) => {

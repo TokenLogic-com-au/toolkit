@@ -9018,7 +9018,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0x505609B216713d64e1dCc8C553C9627b5008b99C",
       "proxyAddress": "0x116Ac3EA0C18D101581E927A449851Ab720a39C1",
       "decimals": 18,
-      "name": "KES / USD"
+      "name": "KES / USD (kes-usd)"
     },
     {
       "contractAddress": "0x5FB8bFAEBe2dd6dB2AF308D293ea25e607D3A922",
@@ -9036,7 +9036,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0x6Dad5A3Ff709b3688188e206458375451290A414",
       "proxyAddress": "0x6312034F70390d09bb03F789F84f00215a444AEa",
       "decimals": 18,
-      "name": "JPY / USD"
+      "name": "JPY / USD (jpy-usd)"
     },
     {
       "contractAddress": "0x7BA6e34cce8e8B578D478FDB818682842d8aB369",
@@ -9138,7 +9138,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0xa4da1C19490f6fF6E11c50eB5283F433Fe40E32C",
       "proxyAddress": "0xf323563241BF8B77a2979e9edC1181788A98EcB2",
       "decimals": 8,
-      "name": "JPY / USD (jpy-usd-fx)"
+      "name": "JPY / USD"
     },
     {
       "contractAddress": "0xa82b382154BF1e2819B8156326016537cdff9be6",
@@ -9156,7 +9156,7 @@ export const chainlinkFeeds = {
       "contractAddress": "0xaf984A0A7e7072A5E03024896DcA9cB129A8470F",
       "proxyAddress": "0x0826492a24b1dBd1d8fcB4701b38C557CE685e9D",
       "decimals": 18,
-      "name": "KES / USD (kes-usd-2)"
+      "name": "KES / USD"
     },
     {
       "contractAddress": "0xdc49b43341eeFC4a09813484C0427a86a1Dd0CD6",
