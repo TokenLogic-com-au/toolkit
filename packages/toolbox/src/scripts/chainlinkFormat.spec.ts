@@ -105,6 +105,12 @@ describe("scripts:chainlinkFormat", () => {
     ).toMatchObject([{ name: "BTC / USD", decimals: 8 }]);
   });
 
+  it("should keep feeds without proxy", () => {
+    expect(
+      formatChainlinkFeeds([feed({ proxyAddress: null })])[0].proxyAddress,
+    ).toBeNull();
+  });
+
   it("should skip feeds without contract", () => {
     expect(
       formatChainlinkFeeds([feed({ contractAddress: zeroAddress })]),

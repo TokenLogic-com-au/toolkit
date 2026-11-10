@@ -2,7 +2,8 @@ import { zeroAddress, type Address } from "viem";
 
 export type UpstreamChainlinkFeed = {
   contractAddress: Address;
-  proxyAddress: Address;
+  // upstream lists some feeds without a proxy
+  proxyAddress: Address | null;
   path: string;
   // seems to be always svr
   secondaryProxyAddress?: Address;
@@ -14,7 +15,7 @@ export type UpstreamChainlinkFeed = {
 
 export type FormattedChainlinkFeed = {
   contractAddress: Address;
-  proxyAddress: Address;
+  proxyAddress: Address | null;
   secondaryProxyAddress?: Address;
   decimals: number;
   name: string;
