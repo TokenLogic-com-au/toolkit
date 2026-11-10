@@ -27,6 +27,9 @@ const toPath = (name: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
+// compares against the raw upstream name, not the prefixed SVR one, so an SVR path
+// (e.g. `eth-usd-shared-svr-2`) never matches: SVR duplicates only resolve by visibility,
+// otherwise they throw rather than guess which feed is the SVR one
 const pathMatchesName = (feed: UpstreamChainlinkFeed) =>
   feed.path === toPath(feed.name);
 
