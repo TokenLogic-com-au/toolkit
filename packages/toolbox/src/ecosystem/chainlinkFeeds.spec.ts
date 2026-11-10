@@ -25,6 +25,8 @@ describe("ecosystem:chainlinkFeeds", () => {
     });
     expect(feed).toMatchObject({
       name: "SVR ETH / USD",
+      path: "eth-usd-shared-svr-2",
+      svrDisplayLabel: "Shared SVR",
       proxyAddress: "0x50015f8b17fb2C290Dde41fDc246ed0dcEE93a8b",
       secondaryProxyAddress: "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70",
       matchedOn: "secondary",
@@ -38,6 +40,7 @@ describe("ecosystem:chainlinkFeeds", () => {
     });
     expect(feed).toMatchObject({
       name: "AAVE SVR ETH / USD",
+      svrDisplayLabel: "Aave SVR",
       proxyAddress: "0xa4250cE1aA15Ff4cb5E5a8655293b65694e436Ed",
       matchedOn: "secondary",
     });
@@ -157,6 +160,14 @@ describe("ecosystem:chainlinkFeeds", () => {
     "should suffix duplicate names with the path, keeping $name",
     ({ chainId, address, name }) => {
       expect(getChainlinkFeed({ chainId, address })?.name).toEqual(name);
+    },
+  );
+
+  it.each(Object.entries(chainlinkFeeds))(
+    "should have unique paths on chain %s",
+    (_, feeds) => {
+      const paths = feeds.map((feed) => feed.path);
+      expect(paths.filter((p, i) => paths.indexOf(p) !== i)).toEqual([]);
     },
   );
 

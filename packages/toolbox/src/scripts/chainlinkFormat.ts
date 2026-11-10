@@ -19,6 +19,9 @@ export type FormattedChainlinkFeed = {
   secondaryProxyAddress?: Address;
   decimals: number;
   name: string;
+  // upstream id, unique per chain
+  path: string;
+  svrDisplayLabel?: string;
 };
 
 // "ETH / USD" -> "eth-usd"
@@ -105,6 +108,10 @@ export function formatChainlinkFeeds(
       proxyAddress: feed.proxyAddress,
       decimals: feed.decimals,
       name: uniqueName,
+      path: feed.path,
+      ...(feed.svrDisplayLabel
+        ? { svrDisplayLabel: feed.svrDisplayLabel }
+        : {}),
       ...(feed.secondaryProxyAddress
         ? { secondaryProxyAddress: feed.secondaryProxyAddress }
         : {}),

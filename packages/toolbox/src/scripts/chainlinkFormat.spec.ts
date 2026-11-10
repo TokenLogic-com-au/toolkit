@@ -24,6 +24,7 @@ describe("scripts:chainlinkFormat", () => {
         proxyAddress: "0x0000000000000000000000000000000000000002",
         decimals: 8,
         name: "ETH / USD",
+        path: "eth-usd",
       },
     ]);
   });
@@ -44,6 +45,8 @@ describe("scripts:chainlinkFormat", () => {
         secondaryProxyAddress: "0x0000000000000000000000000000000000000003",
         decimals: 8,
         name: "SVR ETH / USD",
+        path: "eth-usd-shared-svr-2",
+        svrDisplayLabel: "Shared SVR",
       },
     ]);
   });
