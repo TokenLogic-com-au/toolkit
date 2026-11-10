@@ -51,6 +51,9 @@ function pickPlainNameFeed(
   return match;
 }
 
+// other protocols' SVR feeds recapture value for that protocol, not Aave
+const thirdPartySvrLabels = ["Compound SVR"];
+
 export function formatChainlinkFeeds(
   feeds: UpstreamChainlinkFeed[],
 ): FormattedChainlinkFeed[] {
@@ -58,12 +61,9 @@ export function formatChainlinkFeeds(
     .filter((f) => f.contractAddress !== zeroAddress)
     // hidden backup feeds reuse the main feed's name and would overwrite it downstream
     .filter((f) => !/-cre-backup$/.test(f.path))
-    // other protocols' SVR feeds (e.g. "Compound SVR") recapture value for that protocol, not Aave
     .filter(
       (f) =>
-        !f.svrDisplayLabel ||
-        f.svrDisplayLabel === "Shared SVR" ||
-        f.svrDisplayLabel === "Aave SVR",
+        !f.svrDisplayLabel || !thirdPartySvrLabels.includes(f.svrDisplayLabel),
     )
     .map((f) => {
       let name = f.name;
@@ -71,6 +71,11 @@ export function formatChainlinkFeeds(
         name = `SVR ${name}`;
       } else if (f.svrDisplayLabel === "Aave SVR") {
         name = `AAVE SVR ${name}`;
+      } else if (f.svrDisplayLabel) {
+        // fail loudly, so a new or respelled label can't silently drop or misname feeds
+        throw new Error(
+          `Unknown Chainlink SVR label "${f.svrDisplayLabel}" on feed ${f.path}`,
+        );
       }
       return { feed: f, name };
     });

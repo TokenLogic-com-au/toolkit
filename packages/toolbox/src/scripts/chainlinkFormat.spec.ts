@@ -71,14 +71,24 @@ describe("scripts:chainlinkFormat", () => {
     ).toEqual(["SVR USFRon-USD (Ondo API)", "BTC / USD"]);
   });
 
-  it.each(["Compound SVR", "Some Protocol SVR"])(
-    "should skip third party svr feeds labeled %s",
+  it("should skip compound svr feeds", () => {
+    expect(
+      formatChainlinkFeeds([
+        feed({ path: "eth-usd-shared-svr", svrDisplayLabel: "Compound SVR" }),
+      ]),
+    ).toEqual([]);
+  });
+
+  it.each(["Some Protocol SVR", "AAVE SVR"])(
+    "should throw on unknown svr label %s",
     (svrDisplayLabel) => {
-      expect(
+      expect(() =>
         formatChainlinkFeeds([
           feed({ path: "eth-usd-shared-svr", svrDisplayLabel }),
         ]),
-      ).toEqual([]);
+      ).toThrowError(
+        `Unknown Chainlink SVR label "${svrDisplayLabel}" on feed eth-usd-shared-svr`,
+      );
     },
   );
 
